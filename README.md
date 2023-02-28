@@ -1,7 +1,13 @@
 # About
-Open source media server written in [express](https://expressjs.com/).
+Barebones open-source implementation of a media server written in [express](https://expressjs.com/).
+
+# Concept
+This media server's only functionality is to serve files quickly & natively. Allowing easy embedding on services like discord.
+
+# Usage
 
 # Installation
+You need to make a folder called `media` in the root project directory.
 ## Docker
 A sample compose file is provided:
 ```compose
@@ -12,10 +18,12 @@ services:
     container_name: media-server
     image: hashcollision/media-server
 
-    environment:
+    # environment:
       # PORT: 5530 #Optional: use to change the server port.
     ports:
       - 5530:5530 #Make sure this matches the port you're using.
+    volumes:
+      - ./media:/usr/src/app/media #Change ./media to match the folder you'll use to store media.
 
 ```
 ## Manual

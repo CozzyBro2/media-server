@@ -5,16 +5,25 @@ const app = express()
 
 const port = ( process.env['PORT'] || 5530 )
 
+const mediaPath = path.join(__dirname, '/media/')
+const pagePath = path.join(__dirname, '/pages/')
+
+console.log(mediaPath)
+
+if (!mediaPath) {
+    throw new Error('Missing media folder.')
+}
+
 app.get('/', (_, res) => {
-    res.sendFile(path.join(__dirname, '/pages/home.html'))
+    res.sendFile(pagePath + 'home.html')
 })
 
 app.get('/:file', (req, res) => {
-    let name = path.join(__dirname, `/media/${req.params.file}`)
+    const name = mediaPath + req.params.file
 
     if (!filesystem.existsSync(name)) {
         res.status(404)
-        res.sendFile(path.join(__dirname, '/pages/404media.html'))
+        res.sendFile(pagePath + '404media.html')
 
         return
     }
