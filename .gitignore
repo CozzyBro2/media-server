@@ -1,0 +1,5 @@
+/media/*
+/**.vscode
+/node_modules
+/docker-compose*
+/*.git
