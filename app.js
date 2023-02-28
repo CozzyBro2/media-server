@@ -3,12 +3,10 @@ const filesystem = require('fs')
 const path = require('path')
 const app = express()
 
-const port = ( process.env['PORT'] || 5530 )
+const port = ( process.env.PORT || 5530 )
 
 const mediaPath = path.join(__dirname, '/media/')
 const pagePath = path.join(__dirname, '/pages/')
-
-console.log(mediaPath)
 
 if (!mediaPath) {
     throw new Error('Missing media folder.')
@@ -29,7 +27,8 @@ app.get('/:file', (req, res) => {
     }
 
     res.sendFile(name)
-})
+    console.log(`[SUCCESS] Sent ${req.params.file} to ${req.ip}`)
+});
 
 app.listen(port, () => {
     console.log(`[SERVER] Listening on port ${port}`)
