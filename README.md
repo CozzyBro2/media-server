@@ -3,7 +3,7 @@ Open source media server written in [express](https://expressjs.com/).
 
 # Installation
 ## Docker
-The intended method. A sample compose file is provided:
+A sample compose file is provided:
 ```compose
 version: '3.4'
 
@@ -13,9 +13,9 @@ services:
     image: hashcollision/media-server
 
     environment:
-      # PORT: 5530 #(Optional: use to change port server runs on.)
+      # PORT: 5530 #Optional: use to change the server port.
     ports:
-      - 5530:5530 # If you change ports change it here too.
+      - 5530:5530 #Make sure this matches the port you're using.
 
 ```
 ## Manual
