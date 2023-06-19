@@ -24,11 +24,11 @@ app.get('/:file', (req, res, go) => {
         res.sendFile(name)
     }
 
-    else go
+    else go()
 });
 
 app.use((_, res) => {
-    res.send(pagePath + 'home.html')
+    res.send(pagePath + '404media.html')
 })
 
 app.listen(port, () => {
