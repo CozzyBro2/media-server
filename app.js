@@ -27,8 +27,8 @@ function getFile(req, res, go) {
     else go()
 }
 
-app.get('/:file', (req, res, go) => getFile)
-app.get('/nocache/:file', (req, res, go) => getFile)
+app.get('/:file', getFile)
+app.get('/nocache/:file', getFile)
 
 app.use((_, res) => {
     res.sendFile(page_path + '404media.html')
