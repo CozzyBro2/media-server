@@ -28,7 +28,7 @@ app.get('/:file', (req, res, go) => {
 });
 
 app.use((_, res) => {
-    res.send(page_path + '404media.html')
+    res.sendFile(page_path + '404media.html')
 })
 
 app.listen(port, () => {
