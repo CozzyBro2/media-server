@@ -17,7 +17,7 @@ app.get('/', (_, res) => {
     res.sendFile(page_path + 'home.html')
 })
 
-app.get('/:file', (req, res, go) => {
+function getFile(req, res, go) {
     const name = media_path + req.params.file
 
     if (fs.existsSync(name)) {
@@ -25,7 +25,10 @@ app.get('/:file', (req, res, go) => {
     }
 
     else go()
-});
+}
+
+app.get('/:file', (req, res, go) => getFile)
+app.get('/nocache/:file', (req, res, go) => getFile)
 
 app.use((_, res) => {
     res.sendFile(page_path + '404media.html')
