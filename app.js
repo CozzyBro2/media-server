@@ -1,21 +1,26 @@
-const express = require('express')
-const filesystem = require('fs')
+const app = require('express')()
+const bodyParser = require('body-parser')
+
+const fs = require('fs')
 const path = require('path')
-const app = express()
 
 const port = ( process.env.PORT || 5530 )
 
-const mediaPath = path.join(__dirname, '/media/')
-const pagePath = path.join(__dirname, '/pages/')
+const media_path = path.join(__dirname, '/media/')
+const page_path = path.join(__dirname, '/pages/')
+
+app.use(bodyParser.raw({type: "image/*", limit: "40mb"}))
+app.use(bodyParser.raw({type: "text/*", limit: "1gb"}))
+app.use(bodyParser.raw({type: "video/*", limit: "1gb"}))
 
 app.get('/', (_, res) => {
-    res.sendFile(pagePath + 'home.html')
+    res.sendFile(page_path + 'home.html')
 })
 
 app.get('/:file', (req, res, go) => {
-    const name = mediaPath + req.params.file
+    const name = media_path + req.params.file
 
-    if (filesystem.existsSync(name)) {
+    if (fs.existsSync(name)) {
         res.sendFile(name)
     }
 
